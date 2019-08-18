@@ -83,6 +83,10 @@ export default {
       this.cname = ''
     },
     getTheAqi: function () {
+      if (this.selectedOption === '' || this.concentaration === '' || this.cname === '' || this.emailId === '') {
+        alert('please enter name email concentration and also select option')
+        return
+      }
       var body = {
         pname: this.selectedOption,
         pvalue: this.concentaration,

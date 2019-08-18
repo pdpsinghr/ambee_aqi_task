@@ -7,8 +7,9 @@ FROM node:carbon
 # Copy or mount node app here
 WORKDIR /client/
 COPY package.json /client
+RUN npm cache clean --force
 RUN npm install --quiet
-# RUN npm audit fix
+RUN npm audit fix
 EXPOSE 8080
 
 # ENTRYPOINT ["/entrypoint/entrypoint.sh"]
