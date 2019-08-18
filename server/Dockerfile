@@ -5,14 +5,13 @@ FROM node:carbon
 # RUN ["chmod", "+x", "entrypoint/entrypoint.sh"]
 # RUN mkdir /client
 WORKDIR /server/
-# Copy or mount node app here
-# WORKDIR /data/
+
 
 COPY package.json /server
-RUN npm install --quiet
+RUN npm install
 
 EXPOSE 5000
 
 # ENTRYPOINT ["/entrypoint/entrypoint.sh"]
 
-CMD ["node", "app"]
+CMD ["npm", "start"]

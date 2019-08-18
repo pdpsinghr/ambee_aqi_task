@@ -4,14 +4,13 @@ FROM node:carbon
 
 # RUN ["chmod", "+x", "entrypoint/entrypoint.sh"]
 
-# Copy or mount node app here
 WORKDIR /client/
-COPY package.json /client
+COPY package.json /client/
 RUN npm cache clean --force
-RUN npm install --quiet
-RUN npm audit fix
+RUN npm install
+# RUN npm audit fix
 EXPOSE 8080
 
 # ENTRYPOINT ["/entrypoint/entrypoint.sh"]
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
