@@ -26,3 +26,6 @@ in case of docker you can run docker-compose build in root folder
 docker-compose build
 
 docker-compose up
+
+
+![Screenshot (73)](https://user-images.githubusercontent.com/26812447/63239324-5af67780-c268-11e9-88e9-62a5b4f3cfca.png)
