@@ -5,6 +5,7 @@
   "author": "pdpsinghr <pradeeprathore.jecrc@gmail.com>",
   "private": true,
   "scripts": {
+    "serve": "node --version",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",

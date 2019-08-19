@@ -6,8 +6,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./:/client
-      - /client/node_modules
+      - ./client:/data
     environment:
       - API_URL=http://localhost:5000/
 
@@ -16,8 +15,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./:/server
-      - /servr/node_modules
+      - ./server:/data
     depends_on: 
       - server-database
     environment:
@@ -27,5 +25,3 @@ services:
     image: mongo
     ports:
       - 27017:27017
-    volumes:
-      - ./db:/data/db
