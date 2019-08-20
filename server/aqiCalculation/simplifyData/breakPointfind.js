@@ -1,5 +1,4 @@
-let targetConcentrationRange;
-let constants = require('./datantchangable');
+let datantchangable = require('./datantchangable');
 
 module.exports = {
   getConcentrationRangeWithAvgConcentration(pollutantCode, concentration, breakpoints) {
@@ -11,13 +10,13 @@ module.exports = {
         }
       });
       if (targetBreakpoint === undefined) {
-        reject(constants.MESSAGES.INVALID_MESSAGES.INVALID_POLLUTANT_CODE);
+        reject(datantchangable.MESSAGES.INVALID_MESSAGES.INVALID_POLLUTANT_CODE);
       } else {
         targetBreakpoint.concentrations.forEach((breakpointConcentration) => {
           if (concentration >= breakpointConcentration.min && concentration <= breakpointConcentration.max)
             resolve(breakpointConcentration);
         });
-        reject(constants.MESSAGES.INVALID_MESSAGES.INVALID_CONCENTRATION_RANGE);
+        reject(datantchangable.MESSAGES.INVALID_MESSAGES.INVALID_CONCENTRATION_RANGE);
       }
     });
   }

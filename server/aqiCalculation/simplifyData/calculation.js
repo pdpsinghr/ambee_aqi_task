@@ -1,6 +1,3 @@
-let constants = require('./datantchangable');
-let truncator = require('./simplifyData');
-
 module.exports = {
   calculateAQI(concentration, breakpoint) {
     let cHigh = breakpoint.max;

@@ -1,5 +1,5 @@
-let constants = require('./datantchangable');
-let PollutantType = constants.POLLUTANT_TYPE;
+let datantchangable = require('./datantchangable');
+let PollutantType = datantchangable.POLLUTANT_TYPE;
 
 let self = module.exports = {
   truncatePollutantConcentration(pollutantCode, concentration) {

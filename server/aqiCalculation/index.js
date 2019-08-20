@@ -1,17 +1,13 @@
 let fs = require('fs');
 let path = require('path');
-
-let instance = null;
 let targetBreakpointIndex = undefined;
 let breakpoints = undefined;
 let generalMessages = undefined;
 let specificMessages = undefined;
-
-
-let pollutantBreakpointFinder = require('./simplifyData/breakPointfind');
-let messageService = require('./simplifyData/messages');
-let calculator = require('./simplifyData/calculation');
-let constants = require('./simplifyData/datantchangable');
+let breakPointfind = require('./simplifyData/breakPointfind');
+let messages = require('./simplifyData/messages');
+let calculation = require('./simplifyData/calculation');
+let datantchangable = require('./simplifyData/datantchangable');
 
 class AQICalculator {
   constructor() {
@@ -22,16 +18,16 @@ class AQICalculator {
 
   getAQIResult(pollutantCode, concentration) {
     return new Promise((resolve, reject) => {
-      pollutantBreakpointFinder.getConcentrationRangeWithAvgConcentration(pollutantCode, concentration, breakpoints).then((breakpointIndex) => {
+      breakPointfind.getConcentrationRangeWithAvgConcentration(pollutantCode, concentration, breakpoints).then((breakpointIndex) => {
         // console.log('here come', breakpointIndex)
         targetBreakpointIndex = breakpointIndex;
-        let aqi = calculator.calculateAQI(concentration, targetBreakpointIndex);
+        let aqi = calculation.calculateAQI(concentration, targetBreakpointIndex);
         return aqi;
       }, (err) => {
         reject(err);
       }).then((aqi) => {
-        let generalMessage = messageService.getGeneralMessage(aqi, generalMessages);
-        let specificMessage = messageService.getSpecificMessage(pollutantCode, aqi, specificMessages);
+        let generalMessage = messages.getGeneralMessage(aqi, generalMessages);
+        let specificMessage = messages.getSpecificMessage(pollutantCode, aqi, specificMessages);
 
         let result = {
           pollutant: pollutantCode,
@@ -52,5 +48,5 @@ const AQICalculatorInstance = new AQICalculator();
 
 module.exports = {
   AQICalculator: AQICalculatorInstance,
-  PollutantType: constants.POLLUTANT_TYPE
+  PollutantType: datantchangable.POLLUTANT_TYPE
 };

@@ -18,8 +18,8 @@ services:
       - ./server:/app
     depends_on: 
       - server-database
-    environment:
-      - DATABASE_URL=server-database:27017
+    links:
+      - server-database
     
   server-database:
     image: mongo
